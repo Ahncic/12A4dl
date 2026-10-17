@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề Cương Ôn Tập Giữa HKI Lớp 12 - Môn Địa Lí</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --warning: #d97706;
+      --warning-bg: #fef3c7;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 14px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .filter-group, .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    select, button {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: all 0.15s ease;
+    }
+
+    select {
+      background-color: #fff;
+      color: var(--text);
+      max-width: 100%;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-outline {
+      background-color: #fff;
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background-color: #f1f5f9;
+    }
+
+    .btn-warning {
+      background-color: #f59e0b;
+      color: #fff;
+      border-color: #f59e0b;
+    }
+
+    .btn-warning:hover {
+      background-color: #d97706;
+    }
+
+    .stats-bar {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .stat-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .stat-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #f1f5f9;
+    }
+
+    .stat-correct { color: var(--success); background: var(--success-bg); }
+    .stat-wrong { color: var(--danger); background: var(--danger-bg); }
+    .stat-score { color: var(--primary); background: #dbeafe; }
+
+    .question-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .card-header-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    .topic-tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #eff6ff;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .type-tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #7c3aed;
+      background: #f3e8ff;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .type-tag.sa-tag {
+      color: #0f766e;
+      background: #ccfbf1;
+    }
+
+    .question-text {
+      font-weight: 600;
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+      white-space: pre-line;
+    }
+
+    /* Bảng số liệu Địa lí */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      font-weight: 500;
+      text-align: center;
+      background: #fff;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 8px;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Giao diện Phần I: A, B, C, D */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-btn {
+      text-align: left;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.94rem;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      font-weight: 400;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background: #dbeafe;
+      font-weight: 600;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success) !important;
+      background: var(--success-bg) !important;
+      color: #14532d !important;
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger) !important;
+      background: var(--danger-bg) !important;
+      color: #7f1d1d !important;
+    }
+
+    /* Giao diện Phần II: Đúng / Sai */
+    .tf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tf-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+    }
+
+    @media (min-width: 600px) {
+      .tf-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .tf-row.row-correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+
+    .tf-row.row-wrong {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+
+    .tf-statement {
+      font-size: 0.94rem;
+      flex: 1;
+      padding-right: 8px;
+    }
+
+    .tf-buttons {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .tf-btn {
+      min-width: 72px;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .tf-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .tf-btn.selected {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .tf-btn.correct-choice {
+      background: var(--success) !important;
+      color: #fff !important;
+      border-color: var(--success) !important;
+    }
+
+    .tf-btn.wrong-choice {
+      background: var(--danger) !important;
+      color: #fff !important;
+      border-color: var(--danger) !important;
+    }
+
+    /* Giao diện Phần III: Trả lời ngắn (Chuẩn THPT Quốc gia) */
+    .sa-wrapper {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sa-wrapper.sa-correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+
+    .sa-wrapper.sa-wrong {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+
+    .sa-input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .sa-input {
+      flex: 1;
+      min-width: 180px;
+      padding: 9px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .sa-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .sa-grid-preview {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .sa-char-boxes {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    .sa-char-box {
+      width: 28px;
+      height: 32px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 5px;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--primary);
+    }
+
+    .feedback {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 9px 12px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .feedback.show { display: block; }
+    .feedback.ok { color: var(--success); background: var(--success-bg); }
+    .feedback.partial { color: var(--warning); background: var(--warning-bg); }
+    .feedback.err { color: var(--danger); background: var(--danger-bg); }
+
+    /* Công cụ cuối trang khi làm xong bài */
+    .bottom-tool-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 18px;
+      margin-bottom: 36px;
+      border: 2px dashed var(--primary);
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.08);
+    }
+
+    .bottom-tool-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .bottom-tool-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .bottom-tool-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-scroll-top-fast {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-scroll-top-fast:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Nút nổi kéo nhanh lên đầu trang */
+    .floating-top-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 50;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .floating-top-btn.visible {
+      display: inline-flex;
+    }
+
+    .floating-top-btn:hover {
+      background: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-card">
+      <h1 id="quizTitle">ĐỀ CƯƠNG ÔN TẬP GIỮA HKI LỚP 12 - MÔN ĐỊA LÍ</h1>
+      <div class="subtitle" id="quizSubtitle">Trường THPT Dương Văn Thì</div>
+      
+      <div class="controls">
+        <div class="filter-group">
+          <select id="topicSelect" onchange="initQuiz()"></select>
+          
+          <select id="typeSelect" onchange="initQuiz()">
+            <option value="all">Tất cả dạng câu (91 câu)</option>
+            <option value="mcq">Phần I: Trắc nghiệm A, B, C, D (71 câu)</option>
+            <option value="tf">Phần II: Đúng / Sai (10 câu)</option>
+            <option value="sa">Phần III: Trả lời ngắn (10 câu)</option>
+          </select>
+
+          <select id="modeSelect" onchange="initQuiz()">
+            <option value="instant">Chế độ: Chọn xong biết đúng/sai ngay</option>
+            <option value="exam">Chế độ: Làm hết rồi bấm Chấm điểm</option>
+          </select>
+        </div>
+
+        <div class="action-group">
+          <button class="btn-primary" id="submitBtn" onclick="submitExam()" style="display:none;">Nộp bài & Chấm điểm</button>
+          <button class="btn-warning" id="retryWrongBtn" onclick="retryWrong()" style="display:none;">Làm lại câu sai / chưa đủ điểm</button>
+          <button class="btn-outline" onclick="initQuiz(true)">Đảo thứ tự câu</button>
+          <button class="btn-outline" onclick="initQuiz(false)">Làm lại từ đầu</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="progressText">Đã làm: 0 / 0</span>
+      <div class="stat-group">
+        <span class="stat-badge stat-correct" id="correctText">Tối đa: 0</span>
+        <span class="stat-badge stat-wrong" id="wrongText">Chưa tối đa: 0</span>
+        <span class="stat-badge stat-score" id="scoreText">Điểm: 0.00 / 0.00</span>
+      </div>
+    </div>
+
+    <div id="quizContainer"></div>
+
+    <!-- Công cụ cuối trang khi làm xong bài -->
+    <div class="bottom-tool-card">
+      <div class="bottom-tool-title" id="bottomStatusTitle">Công cụ cuối trang - Đề cương Địa lí 12</div>
+      <div class="bottom-tool-desc" id="bottomStatusDesc">Khi làm xong bài ở cuối trang, sử dụng công cụ bên dưới để kéo lên đầu trang nhanh nhất.</div>
+      <div class="bottom-tool-actions">
+        <button class="btn-primary" id="bottomSubmitBtn" onclick="submitExam()" style="display:none;">Nộp bài & Chấm điểm ngay</button>
+        <button class="btn-warning" id="bottomRetryBtn" onclick="retryWrong()" style="display:none;">Làm lại câu sai / thiếu điểm</button>
+        <button class="btn-scroll-top-fast" onclick="scrollToTopFast()">⚡ Kéo lên đầu trang nhanh nhất</button>
+        <button class="btn-outline" onclick="initQuiz(false)">Làm lại từ đầu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nút kéo nhanh nổi góc dưới màn hình -->
+  <button class="floating-top-btn" id="floatingTopBtn" onclick="scrollToTopFast()" title="Kéo lên đầu trang nhanh nhất">
+    ⬆ Lên đầu trang
+  </button>
+
+  <script>
+    // =========================================================================
+    // KHU VỰC NHẬP ĐỀ ĐỊA LÍ 12 (14 TRANG ĐỀ CƯƠNG THPT DƯƠNG VĂN THÌ)
+    // =========================================================================
+
+    const QUIZ_CONFIG = {
+      title: "ĐỀ CƯƠNG ÔN TẬP GIỮA HKI LỚP 12 – NĂM HỌC 2026 – 2027",
+      subtitle: "Trường THPT Dương Văn Thì • Tổ Địa Lí • Đầy đủ 3 phần: Phần I (ABCD) • Phần II (Đúng/Sai) • Phần III (Trả lời ngắn)",
+      mcqPoint: 0.25,
+      tfPoints: [0, 0.1, 0.25, 0.5, 1.0],
+      saPoint: 0.25
+    };
+
+    const TOPIC_1 = "CHỦ ĐỀ 1: THIÊN NHIÊN NHIỆT ĐỚI ẨM GIÓ MÙA";
+    const TOPIC_2 = "CHỦ ĐỀ 2: SỰ PHÂN HOÁ ĐA DẠNG CỦA THIÊN NHIÊN";
+
+    const allQuestions = [
+      // =======================================================================
+      // CHỦ ĐỀ 1: THIÊN NHIÊN NHIỆT ĐỚI ẨM GIÓ MÙA
+      // PHẦN I: TRẮC NGHIỆM NHIỀU LỰA CHỌN (36 CÂU - TRANG 1 ĐẾN TRANG 5)
+      // =======================================================================
+
+      // --- 1. Nhận biết (Trang 1) ---
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 1 (Nhận biết - Tr.1). Gió mùa đông bắc tạo nên một mùa đông lạnh",
+        options: {
+          A: "A. Từ dãy Bạch Mã vào miền Nam.",
+          B: "B. Từ dãy Bạch Mã ra miền Bắc.",
+          C: "C. Từ dãy Hoành Sơn ra miền Bắc.",
+          D: "D. Từ dãy Hoành Sơn vào miền Nam."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 2 (Nhận biết - Tr.1). Loại đất chiếm diện tích lớn nhất ở nước ta là",
+        options: {
+          A: "A. đất xám bạc màu.",
+          B: "B. đất mùn thô.",
+          C: "C. đất phù sa.",
+          D: "D. đất feralit."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 3 (Nhận biết - Tr.1). Phát biểu nào sau đây không đúng với khí hậu Việt Nam?",
+        options: {
+          A: "A. Khí hậu có sự phân hoá đa dạng.",
+          B: "B. Khí hậu mang tính chất nhiệt đới.",
+          C: "C. Mùa đông lạnh kéo dài 2 - 3 tháng.",
+          D: "D. Chịu tác động sâu sắc của gió mùa."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 4 (Nhận biết - Tr.1). Loại gió thổi quanh năm ở nước ta là",
+        options: {
+          A: "A. Tây ôn đới.",
+          B: "B. Tín phong.",
+          C: "C. gió phơn.",
+          D: "D. gió mùa."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 5 (Nhận biết - Tr.1). Do tác động của gió mùa Đông Bắc nên nửa đầu mùa đông ở miền Bắc nước ta thường có kiểu thời tiết",
+        options: {
+          A: "A. lạnh, ẩm.",
+          B: "B. ấm, ẩm.",
+          C: "C. lạnh, khô.",
+          D: "D. ấm, khô."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 6 (Nhận biết - Tr.1). Hệ quả của quá trình xâm thực mạnh ở khu vực đồi núi nước ta là quá trình gì ở vùng đồng bằng?",
+        options: {
+          A: "A. Phong hóa.",
+          B: "B. Bồi tụ.",
+          C: "C. Bóc mòn.",
+          D: "D. Rửa trôi."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 7 (Nhận biết - Tr.1). Gió mùa mùa hạ hoạt động ở đồng bằng Bắc Bộ vào giữa và cuối mùa hạ có hướng chủ yếu là",
+        options: {
+          A: "A. tây nam.",
+          B: "B. đông nam.",
+          C: "C. đông bắc.",
+          D: "D. tây bắc."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 8 (Nhận biết - Tr.1). Hệ sinh thái rừng nguyên sinh đặc trưng cho khí hậu nóng ẩm của nước ta là",
+        options: {
+          A: "A. rừng thưa nhiệt đới khô.",
+          B: "B. rừng nhiệt đới gió mùa nửa rụng lá.",
+          C: "C. rừng nhiệt đới gió mùa.",
+          D: "D. rừng nhiệt đới ẩm lá rộng thường xanh."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 9 (Nhận biết - Tr.1). Đặc điểm nào sau đây không đúng với sông ngòi nước ta?",
+        options: {
+          A: "A. Mạng lưới dày đặc.",
+          B: "B. Nhiều nước quanh năm.",
+          C: "C. Có trữ lượng phù sa lớn.",
+          D: "D. Thủy chế theo mùa."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 10 (Nhận biết - Tr.1). Phát biểu nào sau đây đúng khi nói về đặc điểm gió mùa ở nước ta?",
+        options: {
+          A: "A. Gió mùa mùa hạ có hướng chính là đông nam.",
+          B: "B. Gió mùa mùa hạ có nguồn gốc từ cao áp Xibia.",
+          C: "C. Gió mùa mùa đông thổi liên tục từ tháng 11 đến tháng 4.",
+          D: "D. Gió mùa mùa đông thổi từng đợt từ tháng 11 đến tháng 4."
+        },
+        ans: "D"
+      },
+
+      // --- 2. Thông hiểu (Trang 1, 2, 3) ---
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 1 (Thông hiểu - Tr.1). Khu vực nào sau đây chịu ảnh hưởng mạnh nhất của gió phơn Tây Nam?",
+        options: {
+          A: "A. Đông Nam Bộ.",
+          B: "B. Nam Trung Bộ.",
+          C: "C. Tây Bắc.",
+          D: "D. Bắc Trung Bộ."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 2 (Thông hiểu - Tr.1). Kiểu thời tiết lạnh ẩm xuất hiện vào nửa sau mùa đông ở miền Bắc nước ta là do",
+        options: {
+          A: "A. gió mùa đông đi qua lục địa phương Bắc.",
+          B: "B. khối khí nhiệt đới ẩm Bắc Ấn Độ Dương.",
+          C: "C. khối khí lạnh di chuyển lệch đông qua biển.",
+          D: "D. ảnh hưởng của gió mùa mùa hạ đến sớm."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 3 (Thông hiểu - Tr.2). Loại gió nào sau đây là nguyên nhân chính tạo nên mùa khô ở Nam Bộ nước ta?",
+        options: {
+          A: "A. Gió mùa Đông Bắc.",
+          B: "B. Tín phong bán cầu Bắc.",
+          C: "C. Gió phơn Tây Nam.",
+          D: "D. Gió mùa Tây Nam."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 4 (Thông hiểu - Tr.2). Hậu quả của quá trình xâm thực mạnh gây ra ở miền núi là",
+        options: {
+          A: "A. tạo thành nhiều phụ lưu.",
+          B: "B. tạo nên các cao nguyên lớn.",
+          C: "C. địa hình chia cắt, rửa trôi.",
+          D: "D. tạo thành dạng địa hình mới."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 5 (Thông hiểu - Tr.2). Nguyên nhân gây mưa lớn cho Nam Bộ và vùng cao nguyên phía tây Nam Trung Bộ vào thời kì đầu mùa hạ là do ảnh hưởng của khối khí",
+        options: {
+          A: "A. cận chí tuyến bán cầu Bắc.",
+          B: "B. Bắc Ấn Độ Dương.",
+          C: "C. cận chí tuyến bán cầu Nam.",
+          D: "D. lạnh phương Bắc."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 6 (Thông hiểu - Tr.2). Tính chất nhiệt đới ẩm gió mùa của sông ngòi nước ta biểu hiện qua đặc điểm nào sau đây?",
+        options: {
+          A: "A. Sông ngòi có hướng tây - đông.",
+          B: "B. Sông ở miền núi nhiều thác ghềnh.",
+          C: "C. Có mạng lưới sông ngòi dày đặc.",
+          D: "D. Các sông có chiều dài khác nhau."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: `Câu 7 (Thông hiểu - Tr.2). Cho bảng số liệu: Số giờ nắng các tháng năm 2021 tại trạm quan trắc Quy Nhơn (Đơn vị: Giờ)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Số giờ nắng</b></td><td>108,4</td><td>203,9</td><td>260,0</td><td>260,7</td><td>312,0</td><td>270,5</td><td>224,1</td><td>283,6</td><td>184,4</td><td>142,1</td><td>78,9</td><td>101,9</td></tr>
+        </table></div>Theo bảng số liệu, nhận xét nào sau đây đúng về số giờ nắng các tháng tại trạm quan trắc Quy Nhơn, năm 2021?`,
+        options: {
+          A: "A. Tháng 1 thấp hơn tháng 2 và cao hơn tháng 11.",
+          B: "B. Tháng 7 thấp hơn tháng 12 và cao hơn tháng 10.",
+          C: "C. Tháng 6 cao hơn tháng 3 và thấp hơn tháng 2.",
+          D: "D. Tháng 5 cao hơn tháng 7 và thấp hơn tháng 9."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: `Câu 8 (Thông hiểu - Tr.2). Cho bảng số liệu: Nhiệt độ trung bình các tháng năm 2021 tại trạm quan trắc Đà Nẵng (Đơn vị: °C)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Nhiệt độ</b></td><td>20,3</td><td>22,3</td><td>25,8</td><td>27,5</td><td>29,6</td><td>31,1</td><td>30,9</td><td>30,8</td><td>27,8</td><td>26,8</td><td>25,1</td><td>22,4</td></tr>
+        </table></div>Theo bảng số liệu, nhận xét nào sau đây đúng về nhiệt độ trung bình các tháng tại trạm quan trắc Đà Nẵng, năm 2021?`,
+        options: {
+          A: "A. Tháng 1 thấp hơn tháng 2 và cao hơn tháng 11.",
+          B: "B. Tháng 7 cao hơn tháng 12 và cao hơn tháng 10.",
+          C: "C. Tháng 6 cao hơn tháng 3 và thấp hơn tháng 2.",
+          D: "D. Tháng 5 cao hơn tháng 7 và thấp hơn tháng 9."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: `Câu 9 (Thông hiểu - Tr.2-3). Cho bảng số liệu: Lượng mưa các tháng năm 2021 tại trạm quan trắc Đà Nẵng (Đơn vị: mm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Lượng mưa</b></td><td>34,7</td><td>32,1</td><td>14,6</td><td>24,1</td><td>2,1</td><td>38,5</td><td>12,5</td><td>93,5</td><td>800,4</td><td>782,8</td><td>271,0</td><td>485,8</td></tr>
+        </table></div>Theo bảng số liệu, nhận xét nào sau đây đúng về lượng mưa trung bình các tháng tại trạm quan trắc Đà Nẵng, năm 2021?`,
+        options: {
+          A: "A. Tháng 5 cao hơn tháng 7 và thấp hơn tháng 9.",
+          B: "B. Tháng 8 cao hơn tháng 9 và thấp hơn tháng 1.",
+          C: "C. Tháng 6 cao hơn tháng 3 và thấp hơn tháng 1.",
+          D: "D. Tháng 12 cao hơn tháng 7 và thấp hơn tháng 10."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: `Câu 10 (Thông hiểu - Tr.3). Cho biểu đồ Lượng mưa và lưu lượng nước sông Hồng tại trạm Sơn Tây (Hà Nội) năm 2022:
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th><th>VIII</th><th>IX</th><th>X</th><th>XI</th><th>XII</th></tr>
+          <tr><td><b>Lượng mưa (mm)</b></td><td>19,5</td><td>25,6</td><td>34,5</td><td>104,2</td><td>222</td><td>262,8</td><td>315,7</td><td>335,2</td><td>271,9</td><td>170,1</td><td>59,9</td><td>7,8</td></tr>
+          <tr><td><b>Lưu lượng (m³/s)</b></td><td>1318</td><td>1100</td><td>914</td><td>1071</td><td>1193</td><td>4692</td><td>7986</td><td>9246</td><td>6690</td><td>4422</td><td>2813</td><td>1746</td></tr>
+        </table></div>Nhận xét nào sau đây đúng với biểu đồ trên?`,
+        options: {
+          A: "A. Lượng mưa tháng IX lớn nhất.",
+          B: "B. Tháng đỉnh lũ trùng với tháng có lượng mưa lớn nhất.",
+          C: "C. Tháng cạn nhất trùng với tháng có lượng mưa thấp nhất.",
+          D: "D. Diễn biến lượng mưa và lưu lượng nước sông trái ngược nhau."
+        },
+        ans: "B"
+      },
+
+      // --- 3. Vận dụng (Trang 3, 4, 5) ---
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 1 (Vận dụng - Tr.3). Nhân tố chủ yếu nào sau đây làm cho gió mùa Đông Bắc xâm nhập sâu vào nước ta?",
+        options: {
+          A: "A. Phía bắc giáp Trung Quốc.",
+          B: "B. Các dãy núi chủ yếu có hướng tây bắc - đông nam.",
+          C: "C. Nước ta có nhiều đồi núi.",
+          D: "D. Hướng vòng cung của các dãy núi vùng Đông Bắc."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 2 (Vận dụng - Tr.3). Gió phơn Tây Nam làm cho khí hậu vùng đồng bằng ven biển Trung Bộ nước ta có",
+        options: {
+          A: "A. mưa nhiều vào thu đông.",
+          B: "B. lượng bức xạ Mặt Trời lớn.",
+          C: "C. thời tiết đầu hạ khô nóng.",
+          D: "D. hai mùa mưa khác nhau rõ rệt."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 3a (Vận dụng - Tr.3-4). “Gió mùa Đông Nam” hoạt động ở Bắc Bộ có nguồn gốc từ",
+        options: {
+          A: "A. áp cao cận chí tuyến bán cầu Bắc.",
+          B: "B. áp cao cận chí tuyến bán cầu Nam.",
+          C: "C. khối khí cực lục địa từ áp cao Xibia.",
+          D: "D. khối khí nhiệt đới ẩm Bắc Ấn Độ Dương."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 3b (Vận dụng - Tr.4). Phát biểu nào sau đây không đúng với tác động của gió mùa Đông Bắc ở miền Bắc nước ta?",
+        options: {
+          A: "A. Nửa đầu mùa đông lạnh khô.",
+          B: "B. Nửa sau mùa đông lạnh ẩm.",
+          C: "C. Tạo nên một mùa đông lạnh.",
+          D: "D. Tạo nên một mùa khô sâu sắc."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 4 (Vận dụng - Tr.4). Sông ngòi nước ta có tổng lượng nước lớn chủ yếu do",
+        options: {
+          A: "A. địa hình đồi núi thấp chiếm ưu thế và lượng mưa lớn.",
+          B: "B. thảm thực vật có độ che phủ cao và lượng mưa lớn.",
+          C: "C. lượng mưa lớn trên đồi núi dốc và ít lớp phủ thực vật.",
+          D: "D. mưa lớn và nguồn nước từ bên ngoài lãnh thổ chảy vào."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 5 (Vận dụng - Tr.4). Phần lớn sông ngòi nước ta có đặc điểm ngắn và dốc do các nhân tố chủ yếu nào sau đây?",
+        options: {
+          A: "A. Địa hình, sinh vật và thổ nhưỡng.",
+          B: "B. Khí hậu và sự phân bố địa hình.",
+          C: "C. Hình dáng lãnh thổ và khí hậu.",
+          D: "D. Hình dáng lãnh thổ và địa hình."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 6 (Vận dụng - Tr.4). Hiện tượng “nồm” của thời tiết miền Bắc vào cuối mùa đông - đầu mùa xuân chủ yếu do gió nào gây nên?",
+        options: {
+          A: "A. Gió mùa Đông Bắc.",
+          B: "B. Gió phơn.",
+          C: "C. Tín phong bán cầu Bắc.",
+          D: "D. Gió mùa Tây Nam."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 7 (Vận dụng - Tr.4). Mưa vào mùa hạ nước ta chủ yếu là do tác động kết hợp của",
+        options: {
+          A: "A. tín phong bán cầu Bắc và dải hội tụ nhiệt đới.",
+          B: "B. khối khí hướng đông bắc và hoạt động của bão.",
+          C: "C. khối khí hướng tây nam và dải hội tụ nhiệt đới.",
+          D: "D. gió hướng tây nam từ Bắc Ấn Độ Dương và bão."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 8 (Vận dụng - Tr.4). Đặc điểm nào sau đây không phải của gió Tín phong khi hoạt động ở nước ta?",
+        options: {
+          A: "A. Lấn át hoàn toàn sự hoạt động của gió mùa ở nước ta.",
+          B: "B. Chỉ mạnh lên vào thời kỳ chuyển tiếp giữa hai mùa gió.",
+          C: "C. Gây mưa cho vùng ven biển Trung Bộ, khô ở Nam Bộ.",
+          D: "D. Gió có nguồn gốc từ áp cao cận chí tuyến bán cầu Bắc."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 9 (Vận dụng - Tr.4). Sự hình thành gió mùa Đông Nam ở đồng bằng Bắc Bộ nước ta là do tác động kết hợp của",
+        options: {
+          A: "A. gió tây nam từ biển Bắc Ấn Độ Dương đến và dãy Trường Sơn.",
+          B: "B. gió mùa Tây Nam từ Nam bán cầu lên và dải hội tụ nội chí tuyến.",
+          C: "C. gió tây nam từ biển Bắc Ấn Độ Dương đến và dãy núi Bạch Mã.",
+          D: "D. gió mùa Tây Nam từ Nam bán cầu lên và áp thấp ở vùng Bắc Bộ."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 10 (Vận dụng - Tr.4). Khí hậu tác động đến sông ngòi nước ta thể hiện rõ qua",
+        options: {
+          A: "A. tốc độ dòng chảy, hướng chảy của sông, mật độ và mạng lưới.",
+          B: "B. mạng lưới, hướng chảy, mật độ, chế độ nước sông, tốc độ sông.",
+          C: "C. mật độ, mạng lưới, tổng lượng nước, phù sa, chế độ nước sông.",
+          D: "D. lưu lượng nước, độ dốc của con sông, hướng chảy, mật độ sông."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 11 (Vận dụng - Tr.4). Gió mùa Đông Bắc không xóa đi tính chất nhiệt đới của khí hậu và cảnh quan nước ta là do",
+        options: {
+          A: "A. nước ta chịu ảnh hưởng của gió mùa mùa hạ nóng ẩm.",
+          B: "B. gió mùa Đông Bắc chỉ hoạt động từng đợt ở miền Bắc.",
+          C: "C. nhiệt độ trung bình năm trên toàn quốc đều lớn hơn 20°C.",
+          D: "D. lãnh thổ nước ta nằm hoàn toàn trong vùng nội chí tuyến."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: "Câu 12 (Vận dụng - Tr.4-5). Tại sao vùng khí hậu Bắc Trung Bộ gió phơn Tây Nam hoạt động mạnh nhất so với các vùng khác ở nước ta?",
+        options: {
+          A: "A. Địa hình hẹp theo chiều ngang, tác động của gió Đông Bắc.",
+          B: "B. Áp thấp Bắc Bộ hút gió mùa Tây Nam, gió mùa Đông Nam.",
+          C: "C. Hoàn lưu khí quyển, ảnh hưởng của địa hình và bề mặt đệm.",
+          D: "D. Hướng nghiêng của địa hình, ảnh hưởng của gió địa phương."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: `Câu 13 (Vận dụng - Tr.5). Cho bảng số liệu: Nhiệt độ trung bình các tháng năm 2021 tại trạm quan trắc Đà Nẵng (Đơn vị: °C)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Nhiệt độ</b></td><td>20,3</td><td>22,3</td><td>25,8</td><td>27,5</td><td>29,6</td><td>31,1</td><td>30,9</td><td>30,8</td><td>27,8</td><td>26,8</td><td>25,1</td><td>22,4</td></tr>
+        </table></div>Theo bảng số liệu, cho biết biên độ nhiệt độ tại trạm quan trắc Đà Nẵng năm 2021 là bao nhiêu?`,
+        options: {
+          A: "A. 10,8°C.",
+          B: "B. 1,08°C.",
+          C: "C. 10°C.",
+          D: "D. 18°C."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: `Câu 14 (Vận dụng - Tr.5). Cho bảng số liệu: Số giờ nắng các tháng năm 2021 tại trạm quan trắc Quy Nhơn (Đơn vị: Giờ)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Số giờ nắng</b></td><td>108,4</td><td>203,9</td><td>260,0</td><td>260,7</td><td>312,0</td><td>270,5</td><td>224,1</td><td>283,6</td><td>184,4</td><td>142,1</td><td>78,9</td><td>101,9</td></tr>
+        </table></div>Theo bảng số liệu, để thể hiện sự thay đổi số giờ nắng các tháng năm 2021 tại trạm quan trắc Quy Nhơn, dạng biểu đồ nào sau đây là thích hợp nhất?`,
+        options: {
+          A: "A. Miền.",
+          B: "B. Đường.",
+          C: "C. Tròn.",
+          D: "D. Kết hợp."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_1,
+        q: `Câu 15 (Vận dụng - Tr.5). Cho bảng số liệu: Nhiệt độ trung bình và lượng mưa các tháng năm 2021 tại trạm quan trắc Đà Nẵng
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Lượng mưa (mm)</b></td><td>34,7</td><td>32,1</td><td>14,6</td><td>24,1</td><td>2,1</td><td>38,5</td><td>12,5</td><td>93,5</td><td>800,4</td><td>782,8</td><td>271,0</td><td>485,8</td></tr>
+          <tr><td><b>Nhiệt độ (°C)</b></td><td>20,3</td><td>22,3</td><td>25,8</td><td>27,5</td><td>29,6</td><td>31,1</td><td>30,9</td><td>30,8</td><td>27,8</td><td>26,8</td><td>25,1</td><td>22,4</td></tr>
+        </table></div>Theo bảng số liệu, để thể hiện nhiệt độ trung bình và lượng mưa các tháng năm 2021 tại trạm quan trắc Đà Nẵng, dạng biểu đồ nào sau đây là thích hợp nhất?`,
+        options: {
+          A: "A. Cột.",
+          B: "B. Miền.",
+          C: "C. Kết hợp.",
+          D: "D. Đường."
+        },
+        ans: "C"
+      },
+
+      // =======================================================================
+      // CHỦ ĐỀ 1 - PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI (5 CÂU - TRANG 5 & 6)
+      // =======================================================================
+      {
+        type: "tf",
+        topicName: TOPIC_1,
+        q: `Câu 1 (Đúng/Sai - Tr.5-6). Cho thông tin sau:
+        "Sự diễn biến của gió mùa mùa hạ cũng rất phức tạp, nguồn gốc của các luồng gió mùa mùa hạ cũng không đồng nhất trong thời gian và không gian. Xét về nguồn gốc, gió mùa mùa hạ có khi là tín phong nam bán cầu đổi hướng khi vượt qua xích đạo lên bắc bán cầu, có khi chỉ là gió bắc bán cầu bị hút vào áp thấp nóng Ấn Độ - Mianma."`,
+        items: {
+          a: "a) Gió mùa mùa hạ hoạt động ở nước ta vào thời gian từ tháng 5 đến tháng 10 năm sau.",
+          b: "b) Gió tây nam đầu mùa gây thời tiết nóng và khô ở ven biển Trung Bộ và phần nam của khu vực Tây Bắc nước ta.",
+          c: "c) Kết quả tác động của khối khí nhiệt đới ẩm từ bắc Ấn Độ Dương đến nước ta là làm cho mùa mưa ở Duyên hải miền Trung đến sớm hơn.",
+          d: "d) Tác động của dải hội tụ nhiệt đới ở nước ta là gây mưa lớn vào mùa hạ, tháng mưa cực đại lùi dần từ Bắc vào Nam."
+        },
+        ans: { a: "S", b: "Đ", c: "S", d: "Đ" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_1,
+        q: `Câu 2 (Đúng/Sai - Tr.6). Cho thông tin sau:
+        "Hệ quả của quá trình xâm thực, bào mòn mạnh mẽ bề mặt địa hình ở miền đồi núi là sự bồi tụ, hình thành các đồng bằng hạ lưu sông. Đồng bằng sông Hồng và đồng bằng sông Cửu Long có những khu vực hàng năm mở rộng ra biển từ vài chục đến hàng trăm mét như vùng Kim Sơn (Ninh Bình)..."`,
+        items: {
+          a: "a) Hai quá trình chính trong sự hình thành và biến đổi địa hình nước ta là bóc mòn và bồi tụ.",
+          b: "b) Hệ quả của quá trình xâm thực mạnh ở vùng đồi núi là sự mở rộng của đồng bằng hạ lưu.",
+          c: "c) Đồng bằng sông Hồng và Đồng bằng sông Cửu Long là kết quả bồi tụ của sông ngòi trên thềm lục địa rộng.",
+          d: "d) Đồng bằng sông Cửu Long có diện tích lớn hơn Đồng bằng sông Hồng do sông ngòi có hàm lượng phù sa lớn hơn."
+        },
+        ans: { a: "S", b: "Đ", c: "Đ", d: "S" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_1,
+        q: `Câu 3 (Đúng/Sai - Tr.6). Cho thông tin sau:
+        "Quá trình hình thành đất feralit, đất có sự tích lũy cao các oxit sắt (Fe2O3) và nhôm (Al2O3), được hình thành dưới điều kiện nhiệt độ cao, lượng mưa dồi dào, khiến cho sự phong hóa nham thạch tiến hành mạnh mẽ, đặc biệt là phong hóa hóa học mang tính oxy hóa, đã phát triển rộng khắp Việt Nam, đâu đâu cũng thấy màu đất đỏ vàng với các biến dạng theo nham và theo điều kiện rửa trôi oxit."`,
+        items: {
+          a: "a) Đất feralit là loại đất chiếm diện tích lớn nhất ở nước ta.",
+          b: "b) Quá trình hình thành đất feralit là quá trình hình thành đất đặc trưng cho khí hậu nhiệt đới ẩm gió mùa.",
+          c: "c) Trong điều kiện nhiệt ẩm cao, phong hóa diễn ra với cường độ mạnh tạo nên một lớp đất dày.",
+          d: "d) Đất feralit hình thành trên đá vôi phân bố chủ yếu ở các tỉnh thuộc Đông Nam Bộ."
+        },
+        ans: { a: "Đ", b: "Đ", c: "Đ", d: "S" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_1,
+        q: `Câu 4 (Đúng/Sai - Tr.6). Cho bảng số liệu: Lượng mưa các tháng trong năm 2021 tại trạm khí tượng Đà Nẵng
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Lượng mưa (mm)</b></td><td>34,7</td><td>32,1</td><td>14,6</td><td>21,4</td><td>2,1</td><td>38,5</td><td>12,5</td><td>93,5</td><td>800,4</td><td>782,8</td><td>271,0</td><td>485,8</td></tr>
+        </table></div>`,
+        items: {
+          a: "a) Tháng có lượng mưa lớn nhất là tháng 9.",
+          b: "b) Mùa mưa kéo dài từ tháng 1 đến tháng 5.",
+          c: "c) Lượng mưa trung bình năm của Đà Nẵng là 2492,1 mm.",
+          d: "d) Lượng mưa lớn vào thu đông chủ yếu do hoạt động của gió mùa và dải hội tụ nhiệt đới."
+        },
+        ans: { a: "Đ", b: "S", c: "S", d: "Đ" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_1,
+        q: `Câu 5 (Đúng/Sai - Tr.6). Cho bảng số liệu: Nhiệt độ trung bình các tháng của Hà Nội và Vũng Tàu, năm 2022 (Đơn vị: °C)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th><th>VIII</th><th>IX</th><th>X</th><th>XI</th><th>XII</th></tr>
+          <tr><td><b>Hà Nội</b></td><td>18,6</td><td>15,3</td><td>23,4</td><td>24,8</td><td>26,8</td><td>31,4</td><td>30,6</td><td>29,9</td><td>29,0</td><td>26,2</td><td>26,0</td><td>17,8</td></tr>
+          <tr><td><b>Vũng Tàu</b></td><td>26,5</td><td>27,4</td><td>28,1</td><td>28,8</td><td>29,0</td><td>29,3</td><td>28,0</td><td>27,8</td><td>27,8</td><td>27,4</td><td>27,4</td><td>26,6</td></tr>
+        </table></div>`,
+        items: {
+          a: "a) Hà Nội có nhiệt độ thấp nhất vào tháng 1.",
+          b: "b) Biên độ nhiệt năm của Vũng Tàu là 2,8°C.",
+          c: "c) Biên độ nhiệt năm của Vũng Tàu cao hơn Hà Nội.",
+          d: "d) Nhiệt độ trung bình tháng 1 của Hà Nội thấp hơn Vũng Tàu chủ yếu do ảnh hưởng gió mùa Đông Bắc."
+        },
+        ans: { a: "S", b: "Đ", c: "S", d: "Đ" }
+      },
+
+      // =======================================================================
+      // CHỦ ĐỀ 1 - PHẦN III: TRẢ LỜI NGẮN (5 CÂU - TRANG 7)
+      // =======================================================================
+      {
+        type: "sa",
+        topicName: TOPIC_1,
+        q: `Câu 1 (Trả lời ngắn - Tr.7). Cho bảng số liệu: Nhiệt độ không khí trung bình các tháng trong năm tại Hà Nội năm 2021 (Đơn vị: °C)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Nhiệt độ</b></td><td>16,9</td><td>20,9</td><td>22,5</td><td>25,6</td><td>29,7</td><td>31,6</td><td>30,8</td><td>30,5</td><td>28,7</td><td>24,6</td><td>22,5</td><td>19,4</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, tính nhiệt độ trung bình năm tại Hà Nội năm 2021 (làm tròn kết quả đến một chữ số thập phân của °C).`,
+        ans: ["25,3", "25.3"],
+        placeholder: "Nhập kết quả (VD: 25,3)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_1,
+        q: `Câu 2 (Trả lời ngắn - Tr.7). Cho bảng số liệu: Lượng mưa các tháng năm 2022 tại Vinh (Đơn vị: mm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Lượng mưa</b></td><td>27,4</td><td>77,2</td><td>68,8</td><td>110,8</td><td>280,7</td><td>63,8</td><td>255,6</td><td>166,3</td><td>1166,7</td><td>352,0</td><td>718,6</td><td>47,2</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, cho biết tháng mưa nhiều nhất ở Vinh năm 2022 gấp bao nhiêu lần tháng mưa ít nhất? (làm tròn kết quả đến một chữ số thập phân).`,
+        ans: ["42,6", "42.6"],
+        placeholder: "Nhập kết quả (VD: 42,6)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_1,
+        q: `Câu 3 (Trả lời ngắn - Tr.7). Cho bảng số liệu: Mực nước cao nhất và thấp nhất của sông Thương tại trạm Cầu Sơn, giai đoạn 2005 - 2022 (Đơn vị: cm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Năm</th><th>2005</th><th>2010</th><th>2015</th><th>2020</th><th>2022</th></tr>
+          <tr><td><b>Mực nước cao nhất</b></td><td>1470</td><td>1540</td><td>1629</td><td>1506</td><td>1587</td></tr>
+          <tr><td><b>Mực nước thấp nhất</b></td><td>1207</td><td>1226</td><td>1215</td><td>1185</td><td>1232</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, hãy cho biết trong giai đoạn 2005 - 2022, mực nước cao nhất và thấp nhất của sông Thương tại trạm Cầu Sơn có sự chênh lệch lớn nhất vào năm nào?`,
+        ans: "2015",
+        placeholder: "Nhập số năm (VD: 2015)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_1,
+        q: `Câu 4 (Trả lời ngắn - Tr.7). Cho bảng số liệu: Lượng mưa trung bình các tháng năm 2023 tại trạm quan trắc ở Huế (Đơn vị: mm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Lượng mưa</b></td><td>296,5</td><td>234,2</td><td>2,3</td><td>44,6</td><td>142,5</td><td>92,3</td><td>10,6</td><td>41,8</td><td>681,7</td><td>1613,3</td><td>1005,5</td><td>785,7</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, hãy cho biết năm 2023 sự chênh lệch lượng mưa giữa tháng có lượng mưa cao nhất và tháng có lượng mưa thấp nhất ở Huế là bao nhiêu mm? (làm tròn kết quả đến hàng đơn vị).`,
+        ans: "1611",
+        placeholder: "Nhập kết quả (VD: 1611)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_1,
+        q: `Câu 5 (Trả lời ngắn - Tr.7). Cho bảng số liệu: Lượng mưa và lượng bốc hơi của Pleiku năm 2023 (Đơn vị: mm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Địa điểm</th><th>Lượng mưa</th><th>Lượng bốc hơi</th></tr>
+          <tr><td><b>Pleiku</b></td><td>2327,7</td><td>2245,9</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, cho biết cân bằng ẩm của Pleiku năm 2023 là bao nhiêu mm? (làm tròn kết quả đến một chữ số thập phân).`,
+        ans: ["81,8", "81.8"],
+        placeholder: "Nhập kết quả (VD: 81,8)..."
+      },
+
+      // =======================================================================
+      // CHỦ ĐỀ 2: SỰ PHÂN HOÁ ĐA DẠNG CỦA THIÊN NHIÊN
+      // PHẦN I: TRẮC NGHIỆM NHIỀU LỰA CHỌN (35 CÂU - TRANG 8 ĐẾN TRANG 12)
+      // =======================================================================
+
+      // --- 1. Nhận biết (Trang 8) ---
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 1 (Nhận biết - Tr.8). Nhận xét nào sau đây không đúng với sự thay đổi nhiệt độ theo Bắc - Nam ở nước ta?",
+        options: {
+          A: "A. Biên độ nhiệt độ năm càng vào Nam càng giảm.",
+          B: "B. Nhiệt độ trung bình năm tăng dần từ Bắc - Nam.",
+          C: "C. Nhiệt độ trung bình năm giảm dần từ Bắc - Nam.",
+          D: "D. Nhiệt độ mùa hạ ít có sự khác nhau giữa hai miền."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 2 (Nhận biết - Tr.8). Đặc điểm thiên nhiên nổi bật của miền Bắc và Đông Bắc Bắc Bộ nước ta là",
+        options: {
+          A: "A. khí hậu cận xích đạo gió mùa với nền nhiệt độ cao quanh năm.",
+          B: "B. địa hình có các sơn nguyên bóc mòn và các cao nguyên badan.",
+          C: "C. các dãy núi xen kẽ thung lũng sông hướng tây bắc - đông nam.",
+          D: "D. gió mùa Đông Bắc hoạt động, có mùa đông lạnh nhất ở nước ta."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 3 (Nhận biết - Tr.8). Đặc điểm thiên nhiên nổi bật của miền Nam Trung Bộ và Nam Bộ nước ta là",
+        options: {
+          A: "A. khí hậu cận xích đạo gió mùa với nền nhiệt độ cao quanh năm.",
+          B: "B. đồi núi thấp chiếm ưu thế với các dãy núi có hướng vòng cung.",
+          C: "C. địa hình cao, các dãy núi xen thung lũng sông có hướng tây bắc - đông nam.",
+          D: "D. gió mùa Đông Bắc hoạt động mạnh, tạo nên mùa đông lạnh nhất ở nước ta."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 4 (Nhận biết - Tr.8). Thành phần loài chiếm ưu thế ở phần lãnh thổ phía Bắc nước ta là",
+        options: {
+          A: "A. cây lá kim và thú có lông dày.",
+          B: "B. cây chịu hạn, rụng lá theo mùa.",
+          C: "C. động thực vật cận nhiệt đới.",
+          D: "D. động vật và thực vật nhiệt đới."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 5 (Nhận biết - Tr.8). Sự phân hóa thiên nhiên theo độ cao ở nước ta biểu hiện rõ qua các thành phần",
+        options: {
+          A: "A. khí hậu, đất đai, sinh vật.",
+          B: "B. sông ngòi, đất đai, khí hậu.",
+          C: "C. sinh vật, đất đai, sông ngòi.",
+          D: "D. khí hậu, sinh vật, sông ngòi."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 6 (Nhận biết - Tr.8). Đai cận nhiệt đới gió mùa trên núi ở nước ta có đặc điểm là",
+        options: {
+          A: "A. các tháng đều có nhiệt độ trên 25°C.",
+          B: "B. không có tháng nào nhiệt độ trên 20°C.",
+          C: "C. nhiệt độ trung bình các tháng dưới 25°C.",
+          D: "D. chỉ có 2 tháng nhiệt độ dưới 25°C."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 7 (Nhận biết - Tr.8). Cảnh quan thiên nhiên tiêu biểu cho vùng lãnh thổ phía Nam là",
+        options: {
+          A: "A. rừng nhiệt đới ẩm gió mùa.",
+          B: "B. rừng cận xích đạo gió mùa.",
+          C: "C. rừng cận nhiệt đới khô.",
+          D: "D. rừng xích đạo gió mùa."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 8 (Nhận biết - Tr.8). Cảnh quan rừng thưa nhiệt đới khô được hình thành nhiều nhất ở vùng nào sau đây?",
+        options: {
+          A: "A. Ven biển Bắc Trung Bộ.",
+          B: "B. Đồng bằng sông Cửu Long.",
+          C: "C. Vùng cao nguyên phía tây Nam Trung Bộ.",
+          D: "D. Tây Bắc."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 9 (Nhận biết - Tr.8). Đai nhiệt đới gió mùa phân bố ở độ cao trung bình",
+        options: {
+          A: "A. ở miền Bắc dưới 600 - 700 m; miền Nam dưới 900 - 1000 m.",
+          B: "B. ở miền Bắc và miền Nam dưới 600 - 700m đến 900 - 1000 m.",
+          C: "C. ở miền Bắc dưới 900 - 1000 m, miền Nam dưới 600 - 700m.",
+          D: "D. ở miền Bắc trên 600 - 700 m; miền Nam trên 900 - 1000 m."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 10 (Nhận biết - Tr.8). Nhóm đất có diện tích lớn nhất trong đai nhiệt đới gió mùa là",
+        options: {
+          A: "A. đất phù sa.",
+          B: "B. đất feralit có mùn.",
+          C: "C. đất feralit.",
+          D: "D. đất xám phù sa cổ."
+        },
+        ans: "C"
+      },
+
+      // --- 2. Thông hiểu (Trang 9, 10) ---
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 1 (Thông hiểu - Tr.9). Mùa khô ở Bắc Bộ không sâu sắc như ở Nam Bộ nước ta chủ yếu do",
+        options: {
+          A: "A. mạng lưới sông ngòi dày đặc hơn.",
+          B: "B. sự điều tiết của các hồ chứa nước.",
+          C: "C. nguồn nước ngầm phong phú hơn.",
+          D: "D. ảnh hưởng của gió mùa Đông Bắc."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 2 (Thông hiểu - Tr.9). Sự phân hóa thiên nhiên giữa hai khu vực Đông và Tây của dãy Trường Sơn Nam chủ yếu do",
+        options: {
+          A: "A. tác động của gió mùa và hướng các dãy núi.",
+          B: "B. độ cao địa hình và ảnh hưởng của biển.",
+          C: "C. ảnh hưởng của biển và lớp phủ thực vật.",
+          D: "D. độ cao địa hình và hướng các dãy núi."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 3 (Thông hiểu - Tr.9). Cảnh sắc thiên nhiên phần lãnh thổ phía Bắc thay đổi theo mùa do",
+        options: {
+          A: "A. sự phân mùa nóng, lạnh.",
+          B: "B. thiên nhiên phân hóa theo độ cao.",
+          C: "C. sự phân hóa lượng mưa.",
+          D: "D. sự phân hóa theo chiều đông - tây."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 4 (Thông hiểu - Tr.9). Ở nước ta, thiên nhiên vùng núi Tây Bắc khác với Đông Bắc ở đặc điểm nào sau đây?",
+        options: {
+          A: "A. Mùa đông đến sớm hơn ở vùng núi thấp.",
+          B: "B. Mùa đông đến muộn và kết thúc sớm hơn.",
+          C: "C. Mùa mưa đến sớm và kết thúc muộn hơn.",
+          D: "D. Khí hậu lạnh chủ yếu do gió mùa Đông Bắc."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 5 (Thông hiểu - Tr.9). Mùa khô ở các tỉnh ven biển cực Nam Trung Bộ kéo dài nhất cả nước chủ yếu là do",
+        options: {
+          A: "A. hoạt động của gió phơn khô nóng.",
+          B: "B. ảnh hưởng của Tín phong đông bắc.",
+          C: "C. địa hình bờ biển không đón gió mùa.",
+          D: "D. địa hình núi dốc đứng về phía biển."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 6 (Thông hiểu - Tr.9). Tháng mưa cực đại lùi dần từ Bắc Bộ đến Trung Bộ chủ yếu do",
+        options: {
+          A: "A. có sự lùi dần vị trí của dải hội tụ nhiệt đới.",
+          B: "B. càng vào Nam càng xa chí tuyến bán cầu Bắc.",
+          C: "C. ảnh hưởng gió mùa Đông Bắc suy giảm dần.",
+          D: "D. gió Tây Nam nguồn gốc Nam bán cầu suy yếu."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 7 (Thông hiểu - Tr.9). Vùng phía Nam nước ta không có đai ôn đới gió mùa trên núi vì",
+        options: {
+          A: "A. nằm kề vùng biển rộng.",
+          B: "B. không có độ cao trên 2600 m.",
+          C: "C. không có gió mùa Đông Bắc hoạt động.",
+          D: "D. nằm gần xích đạo."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 8 (Thông hiểu - Tr.9). Giữa vùng cao nguyên phía tây và đồng bằng ven biển phía đông Nam Trung Bộ có sự đối lập về mùa mưa và mùa khô là do ảnh hưởng của",
+        options: {
+          A: "A. dãy núi Hoành Sơn kết hợp với ảnh hưởng của gió mùa.",
+          B: "B. dãy núi Trường Sơn kết hợp với ảnh hưởng của gió mùa.",
+          C: "C. dãy núi Bạch Mã kết hợp với ảnh hưởng của gió mùa.",
+          D: "D. dãy núi Hoàng Liên Sơn kết hợp với ảnh hưởng của biển."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 9 (Thông hiểu - Tr.9). Đặc điểm nào sau đây không đúng với thiên nhiên vùng biển và thềm lục địa nước ta?",
+        options: {
+          A: "A. Vùng biển lớn gấp 3 lần diện tích phần đất liền.",
+          B: "B. Thềm lục địa phía Bắc và phía Nam nông, rộng.",
+          C: "C. Đường bờ biển vùng Nam Trung Bộ bằng phẳng.",
+          D: "D. Thềm lục địa Trung Bộ thu hẹp, giáp vùng biển sâu."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: `Câu 10 (Thông hiểu - Tr.9-10). Cho biểu đồ: Lượng mưa tại Bãi Cháy và Đà Nẵng, giai đoạn 2012 - 2022 (Đơn vị: mm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Năm</th><th>2012</th><th>2016</th><th>2020</th><th>2022</th></tr>
+          <tr><td><b>Bãi Cháy</b></td><td>2142,0</td><td>2166,8</td><td>1896,7</td><td>3034,4</td></tr>
+          <tr><td><b>Đà Nẵng</b></td><td>1696,1</td><td>2658,7</td><td>3076,2</td><td>2575,7</td></tr>
+        </table></div>Nhận xét nào sau đây đúng với biểu đồ trên? (Lưu ý: Đề gốc in nhầm vị trí tên trạm ở ý D: năm 2022 Bãi Cháy gấp hơn 1,1 lần Đà Nẵng, loại trừ A, B, C sai rõ số liệu nên chọn D).`,
+        options: {
+          A: "A. Lượng mưa ở Bãi Cháy luôn đạt trên 2000 mm.",
+          B: "B. Lượng mưa ở Đà Nẵng luôn đạt trên 2000 mm.",
+          C: "C. Đà Nẵng có lượng mưa luôn lớn hơn Bãi Cháy.",
+          D: "D. Năm 2022, lượng mưa của Đà Nẵng gấp hơn 1,1 lần Bãi Cháy."
+        },
+        ans: "D"
+      },
+
+      // --- 3. Vận dụng (Trang 10, 11, 12) ---
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 1 (Vận dụng - Tr.10). Sinh vật của miền Tây Bắc và Bắc Trung Bộ có đặc điểm là",
+        options: {
+          A: "A. không có loài thực vật và động vật cận nhiệt đới.",
+          B: "B. thành phần loài sinh vật đa dạng với 3 luồng di cư.",
+          C: "C. không có các loài thực vật và động vật nhiệt đới.",
+          D: "D. không phát triển được hệ sinh thái rừng lá rộng."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 2 (Vận dụng - Tr.10). Điểm giống nhau về tự nhiên của vùng phía đông và phía tây dãy Trường Sơn Nam là",
+        options: {
+          A: "A. mùa mưa vào thu - đông.",
+          B: "B. mùa mưa vào hè - thu.",
+          C: "C. có một mùa khô sâu sắc.",
+          D: "D. có gió Tây khô nóng."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 3 (Vận dụng - Tr.10). Phát biểu nào sau đây không đúng với đặc điểm thiên nhiên miền Tây Bắc và Bắc Trung Bộ?",
+        options: {
+          A: "A. Địa hình cao và trung bình chiếm ưu thế.",
+          B: "B. Dải đồng bằng thu hẹp và chia cắt mạnh.",
+          C: "C. Có mặt thành phần thực vật phương Nam.",
+          D: "D. Thành phần sinh vật ôn đới chiếm ưu thế."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 4 (Vận dụng - Tr.10). Nguyên nhân nào sau đây là chủ yếu làm cho miền Bắc và Đông Bắc Bắc Bộ chịu tác động mạnh của gió mùa Đông Bắc?",
+        options: {
+          A: "A. Độ cao và hướng các dãy núi.",
+          B: "B. Vị trí địa lí và hướng các dãy núi.",
+          C: "C. Vị trí địa lí và độ cao địa hình.",
+          D: "D. Hướng các dãy núi và biển Đông."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 5 (Vận dụng - Tr.10). So với miền Bắc và Đông Bắc Bắc Bộ, khí hậu miền Tây Bắc và Bắc Trung Bộ có",
+        options: {
+          A: "A. mùa đông lạnh hơn.",
+          B: "B. mùa hạ muộn hơn.",
+          C: "C. tính chất nhiệt đới tăng dần.",
+          D: "D. tính chất nhiệt đới giảm dần."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 6 (Vận dụng - Tr.10-11). Hiện tượng mưa phùn ở đồng bằng Bắc Bộ vào nửa sau mùa đông do nguyên nhân chủ yếu nào sau đây?",
+        options: {
+          A: "A. gió mùa Đông Bắc đi qua biển.",
+          B: "B. gió mùa Đông Nam thổi vào.",
+          C: "C. địa hình thấp.",
+          D: "D. nhiều sương mù."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 7 (Vận dụng - Tr.11). Khó khăn lớn nhất về tự nhiên của vùng Nam Trung Bộ và Nam Bộ là",
+        options: {
+          A: "A. bão lụt với tần suất lớn, khô hạn xảy ra trên diện rộng.",
+          B: "B. thời tiết bất ổn định, dòng chảy sông ngòi thất thường.",
+          C: "C. sự thất thường của nhịp điệu mùa khí hậu và dòng chảy sông ngòi.",
+          D: "D. xói mòn, rửa trôi, ngập lụt trên diện rộng, thiếu nước vào mùa khô."
+        },
+        ans: "D"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 8 (Vận dụng - Tr.11). Nét đặc trưng nổi bật nhất của lớp phủ thổ nhưỡng và sinh vật ở miền Tây Bắc và Bắc Trung Bộ là",
+        options: {
+          A: "A. nhiều loài đặc hữu bậc nhất nước ta.",
+          B: "B. có đầy đủ hệ thống các đai cao.",
+          C: "C. số lượng, thành phần loài phong phú.",
+          D: "D. có sự phân hoá đa dạng."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 9 (Vận dụng - Tr.11). Tính phân bậc của địa hình nước ta là nguyên nhân chính tạo nên",
+        options: {
+          A: "A. sự phân hóa thiên nhiên theo kinh độ.",
+          B: "B. sự phân hóa thiên nhiên theo Đông - Tây.",
+          C: "C. sự phân hóa thiên nhiên theo đai cao.",
+          D: "D. sự phân hóa thiên nhiên theo vĩ độ."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 10 (Vận dụng - Tr.11). Miền Nam Trung Bộ và Nam Bộ có biên độ nhiệt độ trung bình năm nhỏ chủ yếu do",
+        options: {
+          A: "A. không chịu ảnh hưởng của gió mùa Đông Bắc, vị trí gần xích đạo.",
+          B: "B. trong năm có hai lần Mặt Trời qua thiên đỉnh, địa hình đồi núi thấp.",
+          C: "C. tổng lượng bức xạ Mặt Trời lớn, cán cân bức xạ dương quanh năm.",
+          D: "D. chịu tác động mạnh của gió mùa Tây Nam và Tín phong bán cầu Bắc."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 11 (Vận dụng - Tr.11). Nguyên nhân nào sau đây là chủ yếu làm cho Thành phố Hồ Chí Minh có lượng bốc hơi lớn?",
+        options: {
+          A: "A. Nền nhiệt cao quanh năm, mùa khô sâu sắc.",
+          B: "B. Gần vùng xích đạo, Trái Đất đang nóng lên.",
+          C: "C. Tín phong hoạt động, có nhiều đợt nắng nóng.",
+          D: "D. Diện tích rừng giảm, nhiệt độ cao quanh năm."
+        },
+        ans: "A"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 12 (Vận dụng - Tr.11). Thiên nhiên nước ta phân hóa theo chiều Bắc - Nam không phải do nguyên nhân nào sau đây?",
+        options: {
+          A: "A. Các dãy núi có hướng tây - đông.",
+          B: "B. Lãnh thổ rộng hơn 7° kinh tuyến.",
+          C: "C. Lãnh thổ trải dài khoảng 15° vĩ tuyến.",
+          D: "D. Phạm vi hoạt động gió mùa Đông Bắc."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 13 (Vận dụng - Tr.11). Sông ở phía bắc vùng Bắc Trung Bộ có lượng phù sa lớn hơn phía nam chủ yếu là do",
+        options: {
+          A: "A. lượng mưa ít, thảm thực vật còn nhiều, sông nhỏ, ngắn và dốc.",
+          B: "B. độ che phủ rừng còn thấp, địa hình dốc và lượng mưa tập trung.",
+          C: "C. sự đối lập giữa mùa mưa và mùa khô, độ che phủ rừng còn cao.",
+          D: "D. địa hình có tính phân bậc rõ rệt, sông ngắn và dốc, nhiều rừng."
+        },
+        ans: "B"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 14 (Vận dụng - Tr.11). Tháng có nhiệt độ cao nhất trong năm thuộc vùng lãnh thổ phía Bắc chủ yếu do",
+        options: {
+          A: "A. trong năm có mùa nóng và mùa lạnh rõ rệt.",
+          B: "B. nằm trong vùng nội chí tuyến bán cầu Bắc.",
+          C: "C. có hai lần Mặt Trời lên thiên đỉnh gần nhau.",
+          D: "D. gió Tín phong hoạt động xen kẽ với gió mùa."
+        },
+        ans: "C"
+      },
+      {
+        type: "mcq",
+        topicName: TOPIC_2,
+        q: "Câu 15 (Vận dụng - Tr.11-12). Đặc điểm tự nhiên chủ yếu nào sau đây làm cho miền Tây Bắc và Bắc Trung Bộ có cơ cấu cây trồng đa dạng?",
+        options: {
+          A: "A. Địa hình núi cao, nhiều kiểu khí hậu, mạng lưới sông ngòi dày đặc.",
+          B: "B. Khí hậu có sự phân hóa, nhiều kiểu địa hình, phong phú về loại đất.",
+          C: "C. Khí hậu phân mùa rõ rệt, nguồn nước mặt dồi dào, sinh vật phong phú.",
+          D: "D. Nhiều loài sinh vật, địa hình phân bậc rõ rệt, diện tích đất feralit lớn."
+        },
+        ans: "B"
+      },
+
+      // =======================================================================
+      // CHỦ ĐỀ 2 - PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI (5 CÂU - TRANG 12 & 13)
+      // =======================================================================
+      {
+        type: "tf",
+        topicName: TOPIC_2,
+        q: `Câu 1 (Đúng/Sai - Tr.12). Cho thông tin sau:
+        "Nằm ở độ cao trung bình dưới 600 - 700m ở miền Bắc và dưới 900 - 1000 m ở miền Nam. Mùa hạ nóng, nhiệt độ trung bình các tháng trên 25°C; độ ẩm thay đổi theo mùa và theo khu vực. Có hai nhóm đất chính là đất phù sa ở vùng đồng bằng và đất feralit ở vùng đồi núi thấp."`,
+        items: {
+          a: "a) Đây là đặc điểm của đai cận nhiệt đới gió mùa.",
+          b: "b) Có hệ sinh thái rừng ôn đới chiếm ưu thế.",
+          c: "c) Mùa hạ nóng do ảnh hưởng vị trí địa lí và hoạt động của gió mùa hạ.",
+          d: "d) Đất feralit chiếm ưu thế do tác động chủ yếu của yếu tố địa hình và khí hậu."
+        },
+        ans: { a: "S", b: "S", c: "Đ", d: "Đ" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_2,
+        q: `Câu 2 (Đúng/Sai - Tr.12). Cho thông tin sau:
+        "Phan-xi-păng là đỉnh núi cao nhất nước ta với độ cao 3147 m, nằm trên dãy núi Hoàng Liên Sơn. Phan-xi-păng là một ngọn núi với thiên nhiên kỳ vĩ, ẩn chứa cả một thảm thực vật với nhiều loài đặc hữu. Phía dưới chân núi là những loài nhiệt đới như cây gạo, cây mít, từ 700 m trở lên là tầng cây hạt trần như cây pơ mu, thông đỏ... Lên cao trên 2600 m khí hậu mang sắc thái vùng ôn đới, nhiệt độ trung bình hàng năm là dưới 15°C, vào các tháng mùa đông là dưới 5°C, có lúc xuống dưới 0°C và có tuyết rơi."`,
+        items: {
+          a: "a) Thiên nhiên dãy núi Hoàng Liên Sơn có 2 đai cao.",
+          b: "b) Càng lên cao nhiệt độ càng giảm, tính nhiệt đới tăng dần.",
+          c: "c) Đai cao từ 700m đến 2600m có khí hậu mang tính chất cận nhiệt đới gió mùa.",
+          d: "d) Thiên nhiên nước ta phân hóa theo độ cao do địa hình đồi núi và gió mùa."
+        },
+        ans: { a: "S", b: "S", c: "Đ", d: "Đ" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_2,
+        q: `Câu 3 (Đúng/Sai - Tr.12). Cho thông tin sau:
+        "Tại Việt Nam, 3/4 đất đai là đồi núi, thì ảnh hưởng lớn nhất của địa hình đến sự hình thành và phân bố đất đai đã tạo điều kiện cho quy luật đai cao phát huy tác dụng. Quá trình feralit chỉ mạnh từ 150m trở xuống, càng lên cao quá trình feralit yếu dần, cường độ phong hóa đá mẹ giảm, tốc độ phân giải chất hữu cơ cũng giảm, làm cho đất có phẫu diện mỏng hơn, mùn nhiều lên, nhưng lại hạn chế quá trình hình thành kết von và đá ong."`,
+        items: {
+          a: "a) Loại đất chủ yếu của đai cận nhiệt đới gió mùa trên núi là đất feralit có mùn và đất mùn.",
+          b: "b) Đất mùn chiếm ưu thế từ độ cao 1600 - 1700m trở lên chủ yếu do nhiệt độ hạ thấp, rừng kém phát triển.",
+          c: "c) Quá trình feralit ngừng trệ ở độ cao 2600 m trở lên do ảnh hưởng của độ cao địa hình và đặc điểm khí hậu.",
+          d: "d) Do địa hình đồi núi thấp chiếm phần lớn diện tích lãnh thổ nên đất feralit có mùn là loại đất chủ yếu ở nước ta."
+        },
+        ans: { a: "Đ", b: "Đ", c: "Đ", d: "S" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_2,
+        q: `Câu 4 (Đúng/Sai - Tr.12). Cho thông tin sau:
+        "Vùng núi Đông Bắc là nơi có mùa đông lạnh nhất cả nước, về mùa đông nhiệt độ hạ xuống rất thấp, thời tiết hanh khô, thiên nhiên mang tính chất cận nhiệt đới gió mùa. Vùng núi Tây Bắc có mùa đông tương đối ấm và khô hanh, ở các vùng núi thấp cảnh quan mang tính chất nhiệt đới gió mùa, tuy nhiên ở các vùng núi cao cảnh quan thiên nhiên lại giống vùng ôn đới."`,
+        items: {
+          a: "a) Vùng núi Đông Bắc có hiện tượng mưa phùn vào cuối mùa đông.",
+          b: "b) Phía nam vùng Tây Bắc có thời kỳ chịu ảnh hưởng của gió phơn do tác động của gió tây nam và hướng núi.",
+          c: "c) Vùng núi Tây Bắc có mùa đông khô hanh hơn Đông Bắc do ảnh hưởng của hướng núi, phạm vi lãnh thổ.",
+          d: "d) Tại các vùng núi cao Tây Bắc có nhiệt độ hạ thấp do địa hình cao hút gió từ các hướng tới."
+        },
+        ans: { a: "Đ", b: "Đ", c: "Đ", d: "S" }
+      },
+      {
+        type: "tf",
+        topicName: TOPIC_2,
+        q: `Câu 5 (Đúng/Sai - Tr.13). Cho thông tin sau:
+        "Cảnh quan thiên nhiên tiêu biểu là đới rừng cận xích đạo gió mùa. Thành phần thực vật và động vật phần lớn thuộc vùng khí hậu Xích đạo và nhiệt đới có nguồn gốc Ma-lai-xi-a, In-đô-nê-xi-a di cư lên hoặc từ Ấn Độ, Mi-an-ma di cư sang."`,
+        items: {
+          a: "a) Đây là đặc điểm của phần lãnh thổ phía Bắc nước ta.",
+          b: "b) Thành phần sinh vật nhiệt đới chiếm ưu thế do đặc điểm về khí hậu quy định.",
+          c: "c) Các loài thực vật có nhiều loài rụng lá theo mùa, khả năng chịu hạn tốt chủ yếu có nguồn gốc từ phương Bắc xuống.",
+          d: "d) Xuất hiện nhiều loài thú có lông dày do khí hậu nóng quanh năm, phân mùa mưa khô rõ rệt, mùa khô kéo dài."
+        },
+        ans: { a: "S", b: "Đ", c: "S", d: "S" }
+      },
+
+      // =======================================================================
+      // CHỦ ĐỀ 2 - PHẦN III: TRẢ LỜI NGẮN (5 CÂU - TRANG 13 & 14)
+      // =======================================================================
+      {
+        type: "sa",
+        topicName: TOPIC_2,
+        q: "Câu 1 (Trả lời ngắn - Tr.13). Biết đỉnh núi Phan-xi-păng cao 3147 m, nếu nhiệt độ tại đỉnh này là 2,0 °C thì trong cùng thời điểm, cùng sườn núi đón gió, nhiệt độ ở chân núi này sẽ là bao nhiêu °C? (làm tròn kết quả đến một chữ số thập phân).",
+        ans: ["20,9", "20.9"],
+        placeholder: "Nhập kết quả (VD: 20,9)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_2,
+        q: `Câu 2 (Trả lời ngắn - Tr.13). Cho bảng số liệu: Nhiệt độ trung bình các tháng của Hà Nội và Cà Mau năm 2022 (Đơn vị: °C)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Hà Nội (Láng)</b></td><td>18,6</td><td>15,3</td><td>23,1</td><td>24,8</td><td>26,8</td><td>31,4</td><td>30,6</td><td>29,9</td><td>29,0</td><td>26,2</td><td>26,0</td><td>17,8</td></tr>
+          <tr><td><b>Cà Mau</b></td><td>27,1</td><td>27,9</td><td>28,0</td><td>28,7</td><td>28,6</td><td>28,7</td><td>27,9</td><td>27,8</td><td>27,4</td><td>27,7</td><td>26,7</td><td>26,6</td></tr>
+        </table></div>Cho biết biên độ nhiệt độ năm của Hà Nội cao hơn của Cà Mau bao nhiêu °C? (làm tròn kết quả đến một chữ số thập phân của °C).`,
+        ans: ["14,0", "14.0", "14"],
+        placeholder: "Nhập kết quả (VD: 14,0)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_2,
+        q: `Câu 3 (Trả lời ngắn - Tr.13). Cho bảng số liệu: Lượng mưa các tháng năm 2022 tại trạm quan trắc Quy Nhơn và trạm quan trắc Cà Mau (Đơn vị: mm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Quy Nhơn</b></td><td>91,4</td><td>48,2</td><td>156,6</td><td>87,0</td><td>123,2</td><td>13,2</td><td>49,5</td><td>64,8</td><td>509,7</td><td>577,4</td><td>421,0</td><td>328,2</td></tr>
+          <tr><td><b>Cà Mau</b></td><td>0,1</td><td>0,9</td><td>105,2</td><td>327,0</td><td>319,5</td><td>225,4</td><td>565,0</td><td>228,3</td><td>409,2</td><td>352,7</td><td>313,3</td><td>71,9</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, hãy cho biết năm 2022, lượng mưa của tháng có lượng mưa thấp nhất tại trạm quan trắc Quy Nhơn (13,2 mm) cao hơn lượng mưa của tháng có lượng mưa thấp nhất tại trạm quan trắc Cà Mau (0,1 mm) là bao nhiêu mm? (làm tròn kết quả đến một chữ số thập phân).`,
+        ans: ["13,1", "13.1"],
+        placeholder: "Nhập kết quả (VD: 13,1)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_2,
+        q: `Câu 4 (Trả lời ngắn - Tr.13-14). Cho bảng số liệu: Lưu lượng dòng chảy của sông Ba và sông Đồng Nai năm 2022 (Đơn vị: m³/s)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Lưu lượng dòng chảy</th><th>Cao nhất</th><th>Thấp nhất</th></tr>
+          <tr><td><b>Sông Ba</b></td><td>935</td><td>77,1</td></tr>
+          <tr><td><b>Sông Đồng Nai</b></td><td>1345</td><td>48,4</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, hãy cho biết sự chênh lệch lưu lượng dòng chảy cao nhất và thấp nhất của sông Đồng Nai cao hơn so với sự chênh lệch lưu lượng dòng chảy cao nhất và thấp nhất của sông Ba là bao nhiêu m³/s? (làm tròn kết quả đến hàng đơn vị).`,
+        ans: ["439", "438,7", "438.7"],
+        placeholder: "Nhập kết quả (VD: 439 hoặc 438,7)..."
+      },
+      {
+        type: "sa",
+        topicName: TOPIC_2,
+        q: `Câu 5 (Trả lời ngắn - Tr.14). Cho bảng số liệu: Lượng mưa trung bình các tháng tại trạm quan trắc Huế và Quy Nhơn năm 2023 (Đơn vị: mm)
+        <div class="table-wrap"><table class="data-table">
+          <tr><th>Tháng</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
+          <tr><td><b>Huế</b></td><td>95,6</td><td>70,8</td><td>128,3</td><td>381,0</td><td>157,3</td><td>33,8</td><td>61,3</td><td>157,5</td><td>448,8</td><td>1366,5</td><td>226,4</td><td>786,6</td></tr>
+          <tr><td><b>Quy Nhơn</b></td><td>91,4</td><td>48,2</td><td>156,6</td><td>87,0</td><td>123,2</td><td>13,2</td><td>49,5</td><td>64,8</td><td>509,7</td><td>577,4</td><td>421,0</td><td>328,2</td></tr>
+        </table></div>Căn cứ vào bảng số liệu trên, hãy cho biết tổng lượng mưa năm 2023 của Huế cao hơn tổng lượng mưa Quy Nhơn bao nhiêu mm? (làm tròn kết quả đến hàng đơn vị).`,
+        ans: ["1444", "1443,7", "1443.7"],
+        placeholder: "Nhập kết quả (VD: 1444)..."
+      }
+    ];
+
+    // =========================================================================
+    // KẾT THÚC KHU VỰC NHẬP ĐỀ (LOGIC XỬ LÝ BÊN DƯỚI)
+    // =========================================================================
+
+    let currentList = [];
+    let userAnswers = {};
+    let saLocked = {};
+    let isSubmitted = false;
+
+    function scrollToTopFast() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    window.addEventListener("scroll", () => {
+      const floatingBtn = document.getElementById("floatingTopBtn");
+      if (window.scrollY > 320) {
+        floatingBtn.classList.add("visible");
+      } else {
+        floatingBtn.classList.remove("visible");
+      }
+    });
+
+    function normalizeTF(val) {
+      if (val === true) return "Đ";
+      if (val === false) return "S";
+      const s = String(val || "").trim().toUpperCase();
+      if (s === "Đ" || s === "D" || s === "ĐÚNG" || s === "DUNG" || s === "TRUE") return "Đ";
+      return "S";
+    }
+
+    function normalizeSA(val) {
+      return String(val ?? "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .replace(/,/g, ".");
+    }
+
+    function checkShortAnswer(userVal, ansConfig) {
+      const normUser = normalizeSA(userVal);
+      if (!normUser) return false;
+      if (Array.isArray(ansConfig)) {
+        return ansConfig.some(a => normalizeSA(a) === normUser);
+      }
+      return normalizeSA(ansConfig) === normUser;
+    }
+
+    function formatDisplaySA(ansConfig) {
+      return Array.isArray(ansConfig) ? ansConfig[0] : String(ansConfig);
+    }
+
+    function getQuestionMaxScore(item) {
+      if (item.type === "tf") return QUIZ_CONFIG.tfPoints[4];
+      if (item.type === "sa") return QUIZ_CONFIG.saPoint;
+      return QUIZ_CONFIG.mcqPoint;
+    }
+
+    function getQuestionEarnedScore(item, ansObj) {
+      if (ansObj === undefined || ansObj === null || ansObj === "") return 0;
+      if (item.type === "tf") {
+        let correctSub = 0;
+        ["a", "b", "c", "d"].forEach(k => {
+          if (ansObj[k] && ansObj[k] === normalizeTF(item.ans[k])) {
+            correctSub++;
+          }
+        });
+        return QUIZ_CONFIG.tfPoints[correctSub] || 0;
+      } else if (item.type === "sa") {
+        return checkShortAnswer(ansObj, item.ans) ? QUIZ_CONFIG.saPoint : 0;
+      } else {
+        return ansObj === item.ans ? QUIZ_CONFIG.mcqPoint : 0;
+      }
+    }
+
+    function isQuestionFullyAnswered(item, ansObj, idx) {
+      const mode = document.getElementById("modeSelect").value;
+      if (ansObj === undefined || ansObj === null) return false;
+      if (item.type === "tf") {
+        return ["a", "b", "c", "d"].every(k => ansObj[k] === "Đ" || ansObj[k] === "S");
+      }
+      if (item.type === "sa") {
+        if (mode === "instant") return Boolean(saLocked[idx]);
+        return String(ansObj).trim().length > 0;
+      }
+      return Boolean(ansObj);
+    }
+
+    function setupHeaderAndTopics() {
+      document.title = QUIZ_CONFIG.title;
+      document.getElementById("quizTitle").textContent = QUIZ_CONFIG.title;
+      document.getElementById("quizSubtitle").textContent = QUIZ_CONFIG.subtitle;
+
+      const select = document.getElementById("topicSelect");
+      select.innerHTML = "";
+
+      const allOpt = document.createElement("option");
+      allOpt.value = "all";
+      allOpt.textContent = `Tất cả chủ đề (${allQuestions.length} câu)`;
+      select.appendChild(allOpt);
+
+      const topicCounts = {};
+      allQuestions.forEach(item => {
+        const t = item.topicName || "Chung";
+        topicCounts[t] = (topicCounts[t] || 0) + 1;
+      });
+
+      Object.keys(topicCounts).forEach(topicName => {
+        const opt = document.createElement("option");
+        opt.value = topicName;
+        opt.textContent = `${topicName} (${topicCounts[topicName]} câu)`;
+        select.appendChild(opt);
+      });
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function initQuiz(shuffle = false, customList = null) {
+      const topic = document.getElementById("topicSelect").value;
+      const qType = document.getElementById("typeSelect").value;
+      const mode = document.getElementById("modeSelect").value;
+
+      if (customList) {
+        currentList = customList;
+      } else {
+        currentList = allQuestions.filter(item => {
+          const itemType = item.type || "mcq";
+          const matchTopic = topic === "all" || item.topicName === topic;
+          const matchType = qType === "all" || itemType === qType;
+          return matchTopic && matchType;
+        });
+        if (shuffle) {
+          currentList = shuffleArray(currentList);
+        }
+      }
+
+      userAnswers = {};
+      saLocked = {};
+      isSubmitted = false;
+
+      const showSubmit = mode === "exam";
+      document.getElementById("submitBtn").style.display = showSubmit ? "inline-block" : "none";
+      document.getElementById("bottomSubmitBtn").style.display = showSubmit ? "inline-block" : "none";
+      document.getElementById("retryWrongBtn").style.display = "none";
+      document.getElementById("bottomRetryBtn").style.display = "none";
+
+      renderQuestions();
+      updateStats();
+      scrollToTopFast();
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById("quizContainer");
+      const mode = document.getElementById("modeSelect").value;
+      container.innerHTML = "";
+
+      if (currentList.length === 0) {
+        container.innerHTML = `
+          <div class="question-card" style="text-align:center; color: var(--muted); padding: 28px;">
+            Hiện chưa có câu hỏi nào thuộc dạng này trong bộ đề.
+          </div>
+        `;
+        return;
+      }
+
+      currentList.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+        const itemType = item.type || "mcq";
+
+        if (itemType === "tf") {
+          renderTFCard(card, item, index, mode);
+        } else if (itemType === "sa") {
+          renderSACard(card, item, index, mode);
+        } else {
+          renderMCQCard(card, item, index, mode);
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    function renderMCQCard(card, item, index, mode) {
+      const chosen = userAnswers[index];
+      const showResult = (mode === "instant" && chosen) || (mode === "exam" && isSubmitted);
+
+      let optionsHTML = "";
+      ["A", "B", "C", "D"].forEach(key => {
+        let btnClass = "option-btn";
+        if (chosen === key) btnClass += " selected";
+
+        if (showResult) {
+          if (key === item.ans) btnClass += " correct";
+          else if (chosen === key && chosen !== item.ans) btnClass += " wrong";
+        }
+
+        const disabledAttr = (mode === "instant" && chosen) || isSubmitted ? "disabled" : "";
+
+        optionsHTML += `
+          <button class="${btnClass}" ${disabledAttr} onclick="selectMCQ(${index}, '${key}')">
+            <span>${item.options[key]}</span>
+          </button>
+        `;
+      });
+
+      let feedbackHTML = `<div class="feedback"></div>`;
+      if (showResult) {
+        if (chosen === item.ans) {
+          feedbackHTML = `<div class="feedback show ok">✓ Chính xác! (+${QUIZ_CONFIG.mcqPoint} điểm) • Đáp án đúng: ${item.ans}</div>`;
+        } else if (chosen) {
+          feedbackHTML = `<div class="feedback show err">✗ Sai! (0 điểm) • Bạn chọn ${chosen}, đáp án đúng là ${item.ans}.</div>`;
+        } else {
+          feedbackHTML = `<div class="feedback show err">! Bạn chưa chọn câu này (0 điểm) • Đáp án đúng là ${item.ans}.</div>`;
+        }
+      }
+
+      card.innerHTML = `
+        <div class="card-header-tags">
+          <span class="topic-tag">${item.topicName || "Câu hỏi"}</span>
+          <span class="type-tag">Phần I: ABCD (${QUIZ_CONFIG.mcqPoint}đ)</span>
+        </div>
+        <div class="question-text">${item.q}</div>
+        <div class="options-list">${optionsHTML}</div>
+        ${feedbackHTML}
+      `;
+    }
+
+    function renderTFCard(card, item, index, mode) {
+      const ansObj = userAnswers[index] || {};
+      const all4Chosen = isQuestionFullyAnswered(item, ansObj, index);
+      const showCardSummary = (mode === "instant" && all4Chosen) || (mode === "exam" && isSubmitted);
+
+      let rowsHTML = "";
+      ["a", "b", "c", "d"].forEach(subKey => {
+        const userSubChoice = ansObj[subKey];
+        const correctSubAns = normalizeTF(item.ans[subKey]);
+        const showSubResult = (mode === "instant" && userSubChoice) || (mode === "exam" && isSubmitted);
+
+        let rowClass = "tf-row";
+        if (showSubResult) {
+          rowClass += (userSubChoice === correctSubAns) ? " row-correct" : " row-wrong";
+        }
+
+        const disabledAttr = (mode === "instant" && userSubChoice) || isSubmitted ? "disabled" : "";
+
+        let btnDClass = "tf-btn";
+        let btnSClass = "tf-btn";
+
+        if (userSubChoice === "Đ") btnDClass += " selected";
+        if (userSubChoice === "S") btnSClass += " selected";
+
+        if (showSubResult) {
+          if (correctSubAns === "Đ") btnDClass += " correct-choice";
+          if (correctSubAns === "S") btnSClass += " correct-choice";
+          if (userSubChoice === "Đ" && correctSubAns !== "Đ") btnDClass += " wrong-choice";
+          if (userSubChoice === "S" && correctSubAns !== "S") btnSClass += " wrong-choice";
+        }
+
+        rowsHTML += `
+          <div class="${rowClass}">
+            <div class="tf-statement">${item.items[subKey]}</div>
+            <div class="tf-buttons">
+              <button class="${btnDClass}" ${disabledAttr} onclick="selectTF(${index}, '${subKey}', 'Đ')">Đúng</button>
+              <button class="${btnSClass}" ${disabledAttr} onclick="selectTF(${index}, '${subKey}', 'S')">Sai</button>
+            </div>
+          </div>
+        `;
+      });
+
+      let feedbackHTML = `<div class="feedback"></div>`;
+      if (showCardSummary || (mode === "instant" && Object.keys(ansObj).length > 0)) {
+        let correctSubCount = 0;
+        ["a", "b", "c", "d"].forEach(k => {
+          if (ansObj[k] && ansObj[k] === normalizeTF(item.ans[k])) correctSubCount++;
+        });
+        const earned = QUIZ_CONFIG.tfPoints[correctSubCount];
+        const keyString = ["a", "b", "c", "d"].map(k => `${k}) ${normalizeTF(item.ans[k])}`).join(" • ");
+
+        if (correctSubCount === 4) {
+          feedbackHTML = `<div class="feedback show ok">✓ Tuyệt vời! Đúng cả 4/4 ý (+${earned} điểm) • Đáp án: ${keyString}</div>`;
+        } else if (showCardSummary) {
+          const fbType = correctSubCount > 0 ? "partial" : "err";
+          feedbackHTML = `<div class="feedback show ${fbType}">⚡ Đúng ${correctSubCount}/4 ý (+${earned} điểm) • Đáp án đúng: ${keyString}</div>`;
+        } else {
+          feedbackHTML = `<div class="feedback show partial">Đang làm (${Object.keys(ansObj).length}/4 ý) — Hiện đúng ${correctSubCount} ý (Tạm tính: ${earned} điểm)</div>`;
+        }
+      }
+
+      card.innerHTML = `
+        <div class="card-header-tags">
+          <span class="topic-tag">${item.topicName || "Câu hỏi"}</span>
+          <span class="type-tag">Phần II: Đúng/Sai (Tối đa 1.0đ)</span>
+        </div>
+        <div class="question-text">${item.q}</div>
+        <div class="tf-list">${rowsHTML}</div>
+        ${feedbackHTML}
+      `;
+    }
+
+    function buildSACharBoxesHTML(valStr) {
+      const chars = String(valStr || "").trim().split("");
+      let html = "";
+      for (let i = 0; i < 4; i++) {
+        const c = chars[i] !== undefined ? chars[i] : "";
+        html += `<span class="sa-char-box">${c}</span>`;
+      }
+      return html;
+    }
+
+    function renderSACard(card, item, index, mode) {
+      const currentVal = userAnswers[index] ?? "";
+      const locked = Boolean(saLocked[index]);
+      const showResult = (mode === "instant" && locked) || (mode === "exam" && isSubmitted);
+      const isCorrect = checkShortAnswer(currentVal, item.ans);
+
+      let wrapperClass = "sa-wrapper";
+      if (showResult) {
+        wrapperClass += isCorrect ? " sa-correct" : " sa-wrong";
+      }
+
+      const disabledAttr = (mode === "instant" && locked) || isSubmitted ? "disabled" : "";
+      const placeholderText = item.placeholder || "Nhập đáp án trả lời ngắn...";
+
+      let confirmBtnHTML = "";
+      if (mode === "instant" && !locked) {
+        confirmBtnHTML = `<button class="btn-primary" onclick="confirmSA(${index})">Chốt đáp án</button>`;
+      }
+
+      let feedbackHTML = `<div class="feedback"></div>`;
+      const correctDisplay = formatDisplaySA(item.ans);
+      if (showResult) {
+        if (isCorrect) {
+          feedbackHTML = `<div class="feedback show ok">✓ Chính xác! (+${QUIZ_CONFIG.saPoint} điểm) • Đáp án chuẩn: ${correctDisplay}</div>`;
+        } else if (String(currentVal).trim().length > 0) {
+          feedbackHTML = `<div class="feedback show err">✗ Sai! (0 điểm) • Bạn điền "${currentVal}", đáp án đúng là: ${correctDisplay}</div>`;
+        } else {
+          feedbackHTML = `<div class="feedback show err">! Bạn chưa điền câu này (0 điểm) • Đáp án đúng là: ${correctDisplay}</div>`;
+        }
+      }
+
+      card.innerHTML = `
+        <div class="card-header-tags">
+          <span class="topic-tag">${item.topicName || "Câu hỏi"}</span>
+          <span class="type-tag sa-tag">Phần III: Trả lời ngắn (${QUIZ_CONFIG.saPoint}đ)</span>
+        </div>
+        <div class="question-text">${item.q}</div>
+        <div class="${wrapperClass}">
+          <div class="sa-input-row">
+            <input
+              type="text"
+              class="sa-input"
+              id="sa-input-${index}"
+              value="${String(currentVal).replace(/"/g, '&quot;')}"
+              placeholder="${placeholderText}"
+              ${disabledAttr}
+              oninput="handleSAInput(${index}, this.value)"
+              onkeydown="if(event.key === 'Enter') confirmSA(${index})"
+            />
+            ${confirmBtnHTML}
+          </div>
+          <div class="sa-grid-preview">
+            <span>Phiếu THPTQG (4 ô):</span>
+            <div class="sa-char-boxes" id="sa-boxes-${index}">
+              ${buildSACharBoxesHTML(currentVal)}
+            </div>
+          </div>
+        </div>
+        ${feedbackHTML}
+      `;
+    }
+
+    function selectMCQ(index, key) {
+      const mode = document.getElementById("modeSelect").value;
+      if (isSubmitted) return;
+      if (mode === "instant" && userAnswers[index]) return;
+
+      userAnswers[index] = key;
+      renderQuestions();
+      updateStats();
+    }
+
+    function selectTF(index, subKey, val) {
+      const mode = document.getElementById("modeSelect").value;
+      if (isSubmitted) return;
+      if (!userAnswers[index]) userAnswers[index] = {};
+      if (mode === "instant" && userAnswers[index][subKey]) return;
+
+      userAnswers[index][subKey] = val;
+      renderQuestions();
+      updateStats();
+    }
+
+    function handleSAInput(index, val) {
+      if (isSubmitted || saLocked[index]) return;
+      userAnswers[index] = val;
+      const boxContainer = document.getElementById(`sa-boxes-${index}`);
+      if (boxContainer) {
+        boxContainer.innerHTML = buildSACharBoxesHTML(val);
+      }
+      const mode = document.getElementById("modeSelect").value;
+      if (mode === "exam") {
+        updateStats();
+      }
+    }
+
+    function confirmSA(index) {
+      const mode = document.getElementById("modeSelect").value;
+      if (mode !== "instant" || isSubmitted || saLocked[index]) return;
+      const val = String(userAnswers[index] || "").trim();
+      if (!val) return;
+      saLocked[index] = true;
+      renderQuestions();
+      updateStats();
+    }
+
+    function submitExam() {
+      isSubmitted = true;
+      renderQuestions();
+      updateStats();
+      scrollToTopFast();
+    }
+
+    function retryWrong() {
+      const wrongList = currentList.filter((item, idx) => {
+        const earned = getQuestionEarnedScore(item, userAnswers[idx]);
+        const max = getQuestionMaxScore(item);
+        return earned < max;
+      });
+      if (wrongList.length === 0) return;
+      initQuiz(false, wrongList);
+    }
+
+    function updateStats() {
+      const mode = document.getElementById("modeSelect").value;
+      const total = currentList.length;
+
+      let answeredCount = 0;
+      let fullCorrectCount = 0;
+      let notFullCount = 0;
+      let totalEarned = 0;
+      let totalMax = 0;
+
+      currentList.forEach((item, idx) => {
+        const max = getQuestionMaxScore(item);
+        totalMax += max;
+
+        const ans = userAnswers[idx];
+        let hasAnySelection = false;
+        if (item.type === "tf") {
+          hasAnySelection = ans && Object.keys(ans).length > 0;
+        } else if (item.type === "sa") {
+          hasAnySelection = mode === "instant" ? Boolean(saLocked[idx]) : Boolean(String(ans || "").trim());
+        } else {
+          hasAnySelection = Boolean(ans);
+        }
+
+        const isDone = isQuestionFullyAnswered(item, ans, idx);
+        if (isDone) answeredCount++;
+
+        if (mode === "instant") {
+          if (hasAnySelection) {
+            const earned = getQuestionEarnedScore(item, ans);
+            totalEarned += earned;
+            if (isDone) {
+              if (earned === max) fullCorrectCount++;
+              else notFullCount++;
+            }
+          }
+        } else if (isSubmitted) {
+          const earned = getQuestionEarnedScore(item, ans);
+          totalEarned += earned;
+          if (earned === max) fullCorrectCount++;
+          else notFullCount++;
+        }
+      });
+
+      document.getElementById("progressText").textContent = `Đã làm đủ: ${answeredCount} / ${total} câu`;
+      document.getElementById("correctText").textContent = `Đạt tối đa: ${fullCorrectCount}`;
+      document.getElementById("wrongText").textContent = `Sai / Thiếu điểm: ${notFullCount}`;
+      document.getElementById("scoreText").textContent = `Điểm: ${totalEarned.toFixed(2)} / ${totalMax.toFixed(2)}`;
+
+      const bottomTitle = document.getElementById("bottomStatusTitle");
+      const bottomDesc = document.getElementById("bottomStatusDesc");
+      if (answeredCount === total && total > 0) {
+        bottomTitle.textContent = `🎉 Bạn đã hoàn thành ${answeredCount}/${total} câu hỏi!`;
+        bottomDesc.textContent = `Điểm hiện tại: ${totalEarned.toFixed(2)} / ${totalMax.toFixed(2)}. Nhấn nút bên dưới để kéo lên đầu trang nhanh nhất.`;
+      } else {
+        bottomTitle.textContent = `Tiến độ hiện tại: Đã làm ${answeredCount} / ${total} câu`;
+        bottomDesc.textContent = `Khi làm xong bài ở cuối trang, sử dụng công cụ bên dưới để kéo lên đầu trang nhanh nhất.`;
+      }
+
+      const canRetry = (mode === "instant" && notFullCount > 0) || (mode === "exam" && isSubmitted && notFullCount > 0);
+      document.getElementById("retryWrongBtn").style.display = canRetry ? "inline-block" : "none";
+      document.getElementById("bottomRetryBtn").style.display = canRetry ? "inline-block" : "none";
+    }
+
+    // Khởi chạy lần đầu
+    setupHeaderAndTopics();
+    initQuiz();
+  </script>
+</body>
+</html>
